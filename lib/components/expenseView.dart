@@ -59,6 +59,7 @@ class _ExpenseViewState extends State<ExpenseView> {
               Column(
                 children: [
                   OutlinedButton(
+                    child: Text('From', style: outlinedButtonTextStyle),
                     onPressed: () {
                       // DatePicker.showDateTimePicker(context,
                       //     showTitleActions: true, onConfirm: (date) {
@@ -67,7 +68,6 @@ class _ExpenseViewState extends State<ExpenseView> {
                       //   });
                       // }, currentTime: DateTime.now());
                     },
-                    child: Text('From'),
                   ),
                   Text(
                     startingTime != null
@@ -79,6 +79,7 @@ class _ExpenseViewState extends State<ExpenseView> {
               Column(
                 children: [
                   OutlinedButton(
+                    child: Text('To', style: outlinedButtonTextStyle),
                     onPressed: () {
                       // DatePicker.showDateTimePicker(context,
                       //     showTitleActions: true, onConfirm: (date) {
@@ -87,7 +88,6 @@ class _ExpenseViewState extends State<ExpenseView> {
                       //   });
                       // }, currentTime: DateTime.now());
                     },
-                    child: Text('To'),
                   ),
                   Text(
                     endingTime != null

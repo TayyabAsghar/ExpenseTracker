@@ -28,6 +28,11 @@ class MyApp extends StatelessWidget {
           backgroundColor: primaryColor,
           contentTextStyle: TextStyle(color: Colors.white),
         ),
+        outlinedButtonTheme: OutlinedButtonThemeData(
+          style: ButtonStyle(
+            backgroundColor: primaryMaterialStateColor,
+          ),
+        ),
       ),
       initialRoute: '/',
       routes: {

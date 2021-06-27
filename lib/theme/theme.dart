@@ -18,6 +18,8 @@ const primaryColor = MaterialColor(
 );
 
 const backgroundColor = Color(0xFF2D2F41);
+final primaryMaterialStateColor = MaterialStateProperty.all(primaryColor);
+final outlinedButtonTextStyle = TextStyle(color: Colors.white);
 
 final kTextFieldDecoration = InputDecoration(
   contentPadding: EdgeInsets.symmetric(vertical: 10.0, horizontal: 20.0),

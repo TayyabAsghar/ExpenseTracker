@@ -58,6 +58,7 @@ class _RevenueViewState extends State<RevenueView> {
               Column(
                 children: [
                   OutlinedButton(
+                    child: Text('From', style: outlinedButtonTextStyle),
                     onPressed: () {
                       // DatePicker.showDateTimePicker(context,
                       //     showTitleActions: true, onConfirm: (date) {
@@ -66,7 +67,6 @@ class _RevenueViewState extends State<RevenueView> {
                       //   });
                       // }, currentTime: DateTime.now());
                     },
-                    child: Text('From'),
                   ),
                   Text(
                     startingTime != null
@@ -78,6 +78,7 @@ class _RevenueViewState extends State<RevenueView> {
               Column(
                 children: [
                   OutlinedButton(
+                    child: Text('To', style: outlinedButtonTextStyle),
                     onPressed: () {
                       // DatePicker.showDateTimePicker(context,
                       //     showTitleActions: true, onConfirm: (date) {
@@ -86,7 +87,6 @@ class _RevenueViewState extends State<RevenueView> {
                       //   });
                       // }, currentTime: DateTime.now());
                     },
-                    child: Text('To'),
                   ),
                   Text(
                     endingTime != null
