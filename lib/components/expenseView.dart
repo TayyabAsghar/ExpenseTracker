@@ -1,10 +1,10 @@
+import 'dateTime.dart';
 import '../theme/theme.dart';
 import 'package:intl/intl.dart';
 import 'package:path/path.dart';
 import 'package:sqflite/sqflite.dart';
 import 'package:flutter/material.dart';
 import '../database/databaseSchema.dart';
-//import 'package:flutter_datetime_picker/flutter_datetime_picker.dart';
 
 class ExpenseView extends StatefulWidget {
   const ExpenseView(
@@ -24,78 +24,113 @@ class ExpenseView extends StatefulWidget {
 }
 
 class _ExpenseViewState extends State<ExpenseView> {
-  DateTime? startingTime;
-  DateTime? endingTime;
+  DateTime? startingDate;
+  DateTime? endingDate;
 
   @override
   Widget build(BuildContext context) {
     List filteredList = new List.from(widget.expensesList);
 
-    if (startingTime != null)
+    if (startingDate != null)
       filteredList = filteredList
           .where(
             (element) =>
                 element[ExpenseTable.columnTimestamp] >=
-                startingTime!.millisecondsSinceEpoch,
+                startingDate!.millisecondsSinceEpoch,
           )
           .toList();
 
-    if (endingTime != null)
+    if (endingDate != null)
       filteredList = filteredList
           .where(
             (element) =>
                 element[ExpenseTable.columnTimestamp] <=
-                endingTime!.millisecondsSinceEpoch,
+                endingDate!.millisecondsSinceEpoch,
           )
           .toList();
 
     return Padding(
-      padding: const EdgeInsets.all(8.0),
+      padding: const EdgeInsets.symmetric(horizontal: 6.0, vertical: 8.0),
       child: ListView(
         children: [
           Row(
-            mainAxisAlignment: MainAxisAlignment.spaceAround,
             children: [
-              Column(
-                children: [
-                  OutlinedButton(
-                    child: Text('From', style: outlinedButtonTextStyle),
-                    onPressed: () {
-                      // DatePicker.showDateTimePicker(context,
-                      //     showTitleActions: true, onConfirm: (date) {
-                      //   setState(() {
-                      //     startingTime = date;
-                      //   });
-                      // }, currentTime: DateTime.now());
+              OutlinedButton(
+                child: Icon(Icons.date_range, color: Colors.white),
+                style: ButtonStyle(
+                  minimumSize: MaterialStateProperty.all(Size(5, 40)),
+                  tapTargetSize: MaterialTapTargetSize.shrinkWrap,
+                ),
+                onPressed: () {
+                  ScaffoldMessenger.of(context).hideCurrentSnackBar();
+
+                  showPickerDateRange(
+                    context,
+                    (date) => setState(() => startingDate = date),
+                    (date) => setState(() => endingDate = date),
+                    (error) {
+                      if (error.isNotEmpty)
+                        ScaffoldMessenger.of(context).showSnackBar(
+                          SnackBar(
+                            content: Text(error, style: kErrorStyle),
+                          ),
+                        );
                     },
-                  ),
-                  Text(
-                    startingTime != null
-                        ? DateFormat('yyyy-MM-dd – kk:mm').format(startingTime!)
-                        : "",
-                  )
-                ],
+                  );
+                },
               ),
-              Column(
-                children: [
-                  OutlinedButton(
-                    child: Text('To', style: outlinedButtonTextStyle),
-                    onPressed: () {
-                      // DatePicker.showDateTimePicker(context,
-                      //     showTitleActions: true, onConfirm: (date) {
-                      //   setState(() {
-                      //     endingTime = date;
-                      //   });
-                      // }, currentTime: DateTime.now());
-                    },
-                  ),
-                  Text(
-                    endingTime != null
-                        ? DateFormat('yyyy-MM-dd – kk:mm').format(endingTime!)
-                        : "",
-                  )
-                ],
-              )
+              SizedBox(width: 20),
+              startingDate != null
+                  ? Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Text(
+                          'From:',
+                          style: TextStyle(color: primaryColor),
+                        ),
+                        Text(
+                          DateFormat('dd-MM-yyyy').format(startingDate!),
+                          style: TextStyle(fontSize: 18),
+                        ),
+                      ],
+                    )
+                  : Container(),
+              SizedBox(width: 25),
+              endingDate != null
+                  ? Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Text(
+                          'To:',
+                          style: TextStyle(color: primaryColor),
+                        ),
+                        Text(
+                          DateFormat('dd-MM-yyyy').format(endingDate!),
+                          style: TextStyle(fontSize: 18),
+                        ),
+                      ],
+                    )
+                  : Container(),
+              SizedBox(width: 26),
+              endingDate != null
+                  ? TextButton(
+                      style: ButtonStyle(
+                        padding: MaterialStateProperty.all(
+                          EdgeInsets.only(top: 14.0),
+                        ),
+                        shape: MaterialStateProperty.all(CircleBorder()),
+                        minimumSize: MaterialStateProperty.all(Size(20, 20)),
+                        tapTargetSize: MaterialTapTargetSize.shrinkWrap,
+                      ),
+                      child: Icon(
+                        Icons.cancel,
+                        color: Colors.white,
+                      ),
+                      onPressed: () => setState(
+                        () => startingDate = endingDate = null,
+                      ),
+                    )
+                  : Container(),
             ],
           ),
           SingleChildScrollView(

@@ -1,4 +1,3 @@
-import 'package:expense_tracker/components/background.dart';
 import 'package:flutter/material.dart';
 
 const primaryColor = MaterialColor(
@@ -51,3 +50,5 @@ const kTabViewHeadingStyle = TextStyle(
 
 const kDataColumnTextStyle =
     TextStyle(fontSize: 20, fontWeight: FontWeight.bold);
+
+final kErrorStyle = TextStyle(color: Colors.red[300]);
