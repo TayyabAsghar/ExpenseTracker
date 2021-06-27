@@ -1,3 +1,4 @@
+import '../theme/theme.dart';
 import '../screens/login.dart';
 import '../screens/welcome.dart';
 import 'package:flutter/material.dart';
@@ -13,8 +14,13 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       title: 'Expense Tracker',
       debugShowCheckedModeBanner: false,
-      theme: ThemeData.dark().copyWith(
+      theme: ThemeData(
+        brightness: Brightness.dark,
+        primarySwatch: primaryColor,
         scaffoldBackgroundColor: Color(0xFF2D2F41),
+        appBarTheme: AppBarTheme(
+          backgroundColor: Color(0xFF21A671),
+        ),
       ),
       initialRoute: '/',
       routes: {

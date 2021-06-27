@@ -4,7 +4,7 @@ class Background extends CustomPainter {
   @override
   void paint(Canvas canvas, Size size) {
     Paint paint_0 = new Paint()
-      ..color = Color(0xFF91C788)
+      ..color = Color(0xFF21A671)
       ..style = PaintingStyle.fill
       ..strokeWidth = 1;
 

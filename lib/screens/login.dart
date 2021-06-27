@@ -2,7 +2,7 @@ import '../components/roundButton.dart';
 //import '../components/userData.dart';
 //import '../DatabaseSchema.dart';
 //import '../screens/home.dart';
-import '../constants/constants.dart';
+import '../theme/theme.dart';
 import 'package:flutter/material.dart';
 import 'package:modal_progress_hud_nsn/modal_progress_hud_nsn.dart';
 import 'package:path/path.dart';
@@ -64,8 +64,9 @@ class _LoginState extends State<Login> {
 
     return Scaffold(
       appBar: AppBar(
-        title: Text('Log In'),
-        // backgroundColor: Colors.lightBlueAccent,
+        title: Text(
+          'LOGIN',
+        ),
       ),
       body: ModalProgressHUD(
         inAsyncCall: showSpinner,
@@ -78,47 +79,37 @@ class _LoginState extends State<Login> {
               mainAxisAlignment: MainAxisAlignment.start,
               crossAxisAlignment: CrossAxisAlignment.stretch,
               children: [
-                SizedBox(
-                  height: 48.0,
-                ),
+                SizedBox(height: 48.0),
                 Flexible(
                   child: Hero(
                     tag: 'logo',
                     child: Container(
                       height: 150,
-                      //child: Image.asset('assets/logo.png'),
+                      child: Image.asset('assets/images/logo.png'),
                     ),
                   ),
                 ),
-                SizedBox(
-                  height: 48.0,
-                ),
+                SizedBox(height: 48.0),
                 TextFormField(
                   keyboardType: TextInputType.emailAddress,
                   decoration: kTextFieldDecoration.copyWith(
-                    prefixIcon: Icon(Icons.alternate_email),
+                    prefixIcon: Icon(Icons.email),
                     labelText: 'Email Address',
                     hintText: 'Enter your email address',
                   ),
-                  onChanged: (value) {
-                    email = value;
-                  },
+                  onChanged: (value) => email = value,
                   validator: (value) {
                     if (value == null || value.isEmpty)
                       return 'Please Enter Email Address';
-                    else {
-                      RegExp regExp = new RegExp(
-                          r'^([a-z0-9_\.-]+)@([\da-z\.-]+)\.([a-z\.]{2,6})$');
-                      if (!regExp.hasMatch(value.toString())) {
-                        return 'Please Enter a valid Email Address.';
-                      }
-                    }
+                    else if (!RegExp(
+                            r'^([a-z0-9_\.-]+)@([\da-z\.-]+)\.([a-z\.]{2,6})$')
+                        .hasMatch(value.toString()))
+                      return 'Please Enter a valid Email Address.';
+
                     return null;
                   },
                 ),
-                SizedBox(
-                  height: 8.0,
-                ),
+                SizedBox(height: 8.0),
                 TextFormField(
                   obscureText: true,
                   decoration: kTextFieldDecoration.copyWith(
@@ -126,31 +117,23 @@ class _LoginState extends State<Login> {
                     labelText: 'Password',
                     hintText: 'Enter your password',
                   ),
-                  onChanged: (value) {
-                    password = value;
-                  },
+                  onChanged: (value) => password = value,
                   validator: (value) {
                     if (value == null || value.isEmpty)
                       return 'Please Enter Password';
-                    else if (value.toString().length < 6)
-                      return 'Password length must be greater than 5.';
-
-                    return null;
+                    else if (value.toString().length < 8)
+                      return 'Password length must be greater than 8.';
                   },
                 ),
-                SizedBox(
-                  height: 24.0,
-                ),
+                SizedBox(height: 24.0),
                 Hero(
                   tag: 'login',
                   child: RoundButton(
-                    color: Colors.lightBlueAccent,
-                    title: 'Login',
+                    color: Colors.lightGreen.shade900,
+                    title: 'LOGIN',
                     onPressed: () async {
                       if (_formKey.currentState!.validate()) {
-                        setState(() {
-                          showSpinner = true;
-                        });
+                        setState(() => showSpinner = true);
                         //onLogin();
                       }
                     },

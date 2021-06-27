@@ -24,10 +24,10 @@ class Welcome extends StatelessWidget {
                     Hero(
                       tag: 'logo',
                       child: Container(
-                        child: Icon(
-                          Icons.account_balance_wallet_outlined,
-                          size: 50,
-                          color: Color(0xFF208E35),
+                        width: 50,
+                        child: Image.asset(
+                          'assets/images/logo.png',
+                          fit: BoxFit.scaleDown,
                         ),
                       ),
                     ),
