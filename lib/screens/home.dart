@@ -1,4 +1,5 @@
 //import '../components/CustomDrawerHeader.dart';
+import '../components/navDrawer.dart';
 import '../components/expenseView.dart';
 import '../components/revenueView.dart';
 //import '../components/userData.dart';
@@ -112,38 +113,39 @@ class _HomeState extends State<Home> with SingleTickerProviderStateMixin {
         ),
       ),
       drawer: Drawer(
-        child: ListView(
-          padding: EdgeInsets.zero,
-          children: [
-            // CustomDrawerHeader(
-            //   userData: userData,
-            // ),
-            ListTile(
-              title: Text('Transaction Operations'),
-              leading: Icon(
-                Icons.edit,
-                color: Colors.blueAccent,
-                size: 30,
-              ),
-              onTap: () {
-                // Navigator.popAndPushNamed(context, TransactionScreen.ROUTE,
-                //     arguments: userData);
-              },
-              dense: true,
-            ),
-            ListTile(
-              title: Text('Sign Out'),
-              leading: Icon(
-                Icons.logout,
-                color: Colors.blueAccent,
-                size: 30,
-              ),
-              onTap: () =>
-                  Navigator.popUntil(context, ModalRoute.withName('/')),
-              dense: true,
-            ),
-          ],
-        ),
+        child: NavDrawer(),
+        // ListView(
+        //   padding: EdgeInsets.zero,
+        //   children: [
+        //     // CustomDrawerHeader(
+        //     //   userData: userData,
+        //     // ),
+        //     ListTile(
+        //       title: Text('Transaction Operations'),
+        //       leading: Icon(
+        //         Icons.edit,
+        //         color: Colors.blueAccent,
+        //         size: 30,
+        //       ),
+        //       onTap: () {
+        //         // Navigator.popAndPushNamed(context, TransactionScreen.ROUTE,
+        //         //     arguments: userData);
+        //       },
+        //       dense: true,
+        //     ),
+        //     ListTile(
+        //       title: Text('Sign Out'),
+        //       leading: Icon(
+        //         Icons.logout,
+        //         color: Colors.blueAccent,
+        //         size: 30,
+        //       ),
+        //       onTap: () =>
+        //           Navigator.popUntil(context, ModalRoute.withName('/')),
+        //       dense: true,
+        //     ),
+        //   ],
+        // ),
       ),
       body: TabBarView(
         controller: _tabController,
