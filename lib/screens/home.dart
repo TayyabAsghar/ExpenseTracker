@@ -1,13 +1,12 @@
-//import '../components/CustomDrawerHeader.dart';
-import '../components/navDrawer.dart';
-import '../components/expenseView.dart';
-import '../components/revenueView.dart';
+import 'package:path/path.dart';
 import '../components/userData.dart';
-//import '../databaseSchema.dart';
+import '../components/navDrawer.dart';
+import 'package:sqflite/sqflite.dart';
 //import '../screens/transaction.dart';
 import 'package:flutter/material.dart';
-import 'package:sqflite/sqflite.dart';
-import 'package:path/path.dart';
+import '../components/expenseView.dart';
+import '../components/revenueView.dart';
+import '../database/databaseSchema.dart';
 
 class Home extends StatefulWidget {
   @override
@@ -33,47 +32,51 @@ class _HomeState extends State<Home> with SingleTickerProviderStateMixin {
 
   @override
   Widget build(BuildContext context) {
-    final UserData userData = UserData(email: 'email', name: 'name');
-    //final userData = ModalRoute.of(context)!.settings.arguments as UserData;
-    // void getDataFromDB() async {
-    //   // Get device path of the database
-    //   var path = join((await getDatabasesPath()), 'expenses.db');
-    //   // Initialize DB UserTable static method
-    //   Database db = await initializeDB(path);
-    //   // Get User Net Amount
-    //   var userAmount = await db.query(UserTable.tableName,
-    //       columns: [UserTable.columnAmount],
-    //       where: '${UserTable.columnEmail} = ?',
-    //       whereArgs: [userData.email]);
-    //   // Get Expenses Records
+    final userData = ModalRoute.of(context)!.settings.arguments as UserData;
+    void getDataFromDB() async {
+      var path = join((await getDatabasesPath()), 'expenses.db');
+      Database db = await initializeDB(path);
+      var userAmount = await db.query(
+        UserTable.tableName,
+        columns: [UserTable.columnAmount],
+        where: '${UserTable.columnEmail} = ?',
+        whereArgs: [userData.email],
+      );
 
-    //   List expenses = await db.query(ExpenseTable.tableName,
-    //       columns: [
-    //         'rowid',
-    //         ExpenseTable.columnTitle,
-    //         ExpenseTable.columnAmount,
-    //         ExpenseTable.columnTimestamp,
-    //       ],
-    //       where: '${UserTable.columnEmail} = ?',
-    //       whereArgs: [userData.email],
-    //       orderBy: '${ExpenseTable.columnTimestamp} desc');
-    //   // Get Revenue Records
-    //   List revenues = await db.query(RevenueTable.tableName,
-    //       columns: [
-    //         'rowid',
-    //         RevenueTable.columnTitle,
-    //         RevenueTable.columnAmount,
-    //         RevenueTable.columnTimestamp,
-    //       ],
-    //       where: '${UserTable.columnEmail} = ?',
-    //       whereArgs: [userData.email],
-    //       orderBy: '${ExpenseTable.columnTimestamp} desc');
-    //   setState(() {
-    //     amount = userAmount[0]['amount'].toString();
-    //     expensesList = expenses;
-    //     revenuesList = revenues;
-    //   });
-    // }
+      List expenses = await db.query(
+        ExpenseTable.tableName,
+        columns: [
+          'row-id',
+          ExpenseTable.columnTitle,
+          ExpenseTable.columnAmount,
+          ExpenseTable.columnTimestamp,
+        ],
+        where: '${UserTable.columnEmail} = ?',
+        whereArgs: [userData.email],
+        orderBy: '${ExpenseTable.columnTimestamp} desc',
+      );
+
+      List revenues = await db.query(
+        RevenueTable.tableName,
+        columns: [
+          'row-id',
+          RevenueTable.columnTitle,
+          RevenueTable.columnAmount,
+          RevenueTable.columnTimestamp,
+        ],
+        where: '${UserTable.columnEmail} = ?',
+        whereArgs: [userData.email],
+        orderBy: '${ExpenseTable.columnTimestamp} desc',
+      );
+
+      setState(
+        () {
+          amount = userAmount[0]['amount'].toString();
+          expensesList = expenses;
+          revenuesList = revenues;
+        },
+      );
+    }
 
     //if (amount.length == 0) getDataFromDB();
     return Scaffold(
@@ -103,12 +106,8 @@ class _HomeState extends State<Home> with SingleTickerProviderStateMixin {
           controller: _tabController,
           indicatorColor: Colors.white,
           tabs: [
-            Tab(
-              text: 'Expenses',
-            ),
-            Tab(
-              text: 'Revenue',
-            ),
+            Tab(text: 'Expenses'),
+            Tab(text: 'Revenue'),
           ],
         ),
       ),
@@ -120,17 +119,17 @@ class _HomeState extends State<Home> with SingleTickerProviderStateMixin {
         physics: NeverScrollableScrollPhysics(),
         children: [
           ExpenseView(
-              expensesList: expensesList,
-              email: userData.email,
-              userAmount: amount,
-              getDataFromDB: () {} //'getDataFromDB',
-              ),
+            expensesList: expensesList,
+            email: userData.email,
+            userAmount: amount,
+            getDataFromDB: getDataFromDB,
+          ),
           RevenueView(
-              revenuesList: revenuesList,
-              email: userData.email,
-              userAmount: amount,
-              getDataFromDB: () {} //'getDataFromDB',
-              ),
+            revenuesList: revenuesList,
+            email: userData.email,
+            userAmount: amount,
+            getDataFromDB: getDataFromDB,
+          ),
         ],
       ),
     );
