@@ -1,0 +1,88 @@
+// import '../Screens/LoginScreen.dart';
+// import '../Screens/SignupScreen.dart';
+import '../components/background.dart';
+import 'package:flutter/material.dart';
+import '../components/roundButton.dart';
+import 'package:animated_text_kit/animated_text_kit.dart';
+
+class Welcome extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      body: Stack(
+        children: [
+          CustomPaint(
+            size: MediaQuery.of(context).size,
+            painter: Background(),
+          ),
+          Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              Padding(
+                padding: const EdgeInsets.symmetric(horizontal: 8.0),
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.start,
+                  children: [
+                    Hero(
+                      tag: 'logo',
+                      child: Container(
+                        child: Icon(
+                          Icons.account_balance_wallet_outlined,
+                          size: 50,
+                          color: Color(0xFF208E35),
+                        ),
+                      ),
+                    ),
+                    SizedBox(width: 4),
+                    AnimatedTextKit(
+                      animatedTexts: [
+                        TypewriterAnimatedText(
+                          'Expense Tracker',
+                          textStyle: TextStyle(
+                            fontSize: 35.0,
+                            fontWeight: FontWeight.w900,
+                          ),
+                          speed: Duration(milliseconds: 150),
+                        )
+                      ],
+                      repeatForever: true,
+                    )
+                  ],
+                ),
+              ),
+              SizedBox(height: 48.0),
+              Padding(
+                padding: const EdgeInsets.symmetric(horizontal: 30),
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.stretch,
+                  children: [
+                    Hero(
+                      tag: 'login',
+                      child: RoundButton(
+                        color: Colors.green.shade600,
+                        onPressed: () {
+                          // Navigator.pushNamed(context, LoginScreen.ROUTE);
+                        },
+                        title: 'Log In',
+                      ),
+                    ),
+                    Hero(
+                      tag: 'sign-up',
+                      child: RoundButton(
+                        color: Colors.lightGreen.shade900,
+                        onPressed: () {
+                          // Navigator.pushNamed(context, SignupScreen.ROUTE);
+                        },
+                        title: 'Sign Up',
+                      ),
+                    ),
+                  ],
+                ),
+              ),
+            ],
+          ),
+        ],
+      ),
+    );
+  }
+}
