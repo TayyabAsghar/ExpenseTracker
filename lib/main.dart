@@ -24,6 +24,10 @@ class MyApp extends StatelessWidget {
           backgroundColor: primaryColor,
         ),
         dialogBackgroundColor: backgroundColor,
+        snackBarTheme: SnackBarThemeData(
+          backgroundColor: primaryColor,
+          contentTextStyle: TextStyle(color: Colors.white),
+        ),
       ),
       initialRoute: '/',
       routes: {

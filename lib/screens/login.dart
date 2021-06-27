@@ -1,12 +1,11 @@
-import '../components/roundButton.dart';
-//import '../components/userData.dart';
-//import '../DatabaseSchema.dart';
-//import '../screens/home.dart';
 import '../theme/theme.dart';
-import 'package:flutter/material.dart';
-import 'package:modal_progress_hud_nsn/modal_progress_hud_nsn.dart';
 import 'package:path/path.dart';
+import '../components/userData.dart';
 import 'package:sqflite/sqflite.dart';
+import 'package:flutter/material.dart';
+import '../components/roundButton.dart';
+import '../database/databaseSchema.dart';
+import 'package:modal_progress_hud_nsn/modal_progress_hud_nsn.dart';
 
 class Login extends StatefulWidget {
   const Login({Key? key}) : super(key: key);
@@ -22,50 +21,64 @@ class _LoginState extends State<Login> {
   String password = '';
   @override
   Widget build(BuildContext context) {
-    // void onLogin() async {
-    //   Database db;
-    //   try {
-    //     var path = join((await getDatabasesPath()), 'expenses.db');
-    //     db = await initializeDB(path);
-    //     var name = await db.query(
-    //       UserTable.tableName,
-    //       columns: [UserTable.columnName],
-    //       where:
-    //           '${UserTable.columnEmail} = ? AND ${UserTable.columnPassword} = ?',
-    //       whereArgs: [email, password],
-    //     );
-    //     db.close();
-    //     print(name);
-    //     if (name.length < 1)
-    //       throw Exception();
-    //     else {
-    //       setState(() {
-    //         showSpinner = false;
-    //         FocusScope.of(context).unfocus();
+    void login() async {
+      Database db;
+      try {
+        var path = join((await getDatabasesPath()), 'expenses.db');
+        db = await initializeDB(path);
+        var name = await db.query(
+          UserTable.tableName,
+          columns: [UserTable.columnName],
+          where:
+              '${UserTable.columnEmail} = ? AND ${UserTable.columnPassword} = ?',
+          whereArgs: [email, password],
+        );
+        db.close();
 
-    //         Navigator.of(context).pushNamed(
-    //           HomeScreen.ROUTE,
-    //           arguments: UserData(
-    //               email: email, name: name[0][UserTable.columnName].toString()),
-    //         );
-    //       });
-    //     }
-    //   } catch (e) {
-    //     setState(() {
-    //       showSpinner = false;
-    //     });
-    //     FocusScope.of(context).unfocus();
+        print(name);
 
-    //     ScaffoldMessenger.of(context).showSnackBar(
-    //         SnackBar(content: Text('Email and Password do not match.')));
-    //     print(e);
-    //   }
-    // }
+        if (name.length < 1)
+          throw Exception();
+        else {
+          setState(
+            () {
+              showSpinner = false;
+              FocusScope.of(context).unfocus();
+
+              Navigator.of(context).pushNamed(
+                '/home',
+                arguments: UserData(
+                  email: email,
+                  name: name[0][UserTable.columnName].toString(),
+                ),
+              );
+            },
+          );
+        }
+      } catch (e) {
+        setState(() => showSpinner = false);
+        FocusScope.of(context).unfocus();
+
+        ScaffoldMessenger.of(context).hideCurrentSnackBar();
+        ScaffoldMessenger.of(context).showSnackBar(
+          SnackBar(
+            content: Text('Email and Password do not match.'),
+            duration: Duration(seconds: 2),
+          ),
+        );
+        print(e);
+      }
+    }
 
     return Scaffold(
       appBar: AppBar(
-        title: Text(
-          'LOGIN',
+        title: Text('LOGIN'),
+        leading: IconButton(
+          icon: Icon(Icons.arrow_back),
+          onPressed: () {
+            ScaffoldMessenger.of(context).hideCurrentSnackBar();
+            Navigator.pop(context);
+          },
         ),
       ),
       body: ModalProgressHUD(
@@ -134,7 +147,7 @@ class _LoginState extends State<Login> {
                     onPressed: () async {
                       if (_formKey.currentState!.validate()) {
                         setState(() => showSpinner = true);
-                        //onLogin();
+                        login();
                       }
                     },
                   ),
