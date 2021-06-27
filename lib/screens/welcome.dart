@@ -1,5 +1,3 @@
-// import '../Screens/LoginScreen.dart';
-// import '../Screens/SignupScreen.dart';
 import '../components/background.dart';
 import 'package:flutter/material.dart';
 import '../components/roundButton.dart';
@@ -57,23 +55,21 @@ class Welcome extends StatelessWidget {
                   crossAxisAlignment: CrossAxisAlignment.stretch,
                   children: [
                     Hero(
-                      tag: 'login',
+                      tag: 'sign-up',
                       child: RoundButton(
                         color: Colors.green.shade600,
                         onPressed: () {
                           // Navigator.pushNamed(context, LoginScreen.ROUTE);
                         },
-                        title: 'Log In',
+                        title: 'SIGN UP',
                       ),
                     ),
                     Hero(
-                      tag: 'sign-up',
+                      tag: 'login',
                       child: RoundButton(
                         color: Colors.lightGreen.shade900,
-                        onPressed: () {
-                          // Navigator.pushNamed(context, SignupScreen.ROUTE);
-                        },
-                        title: 'Sign Up',
+                        onPressed: () => Navigator.pushNamed(context, '/login'),
+                        title: 'LOGIN',
                       ),
                     ),
                   ],

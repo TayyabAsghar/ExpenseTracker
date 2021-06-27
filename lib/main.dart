@@ -1,3 +1,4 @@
+import '../screens/login.dart';
 import '../screens/welcome.dart';
 import 'package:flutter/material.dart';
 
@@ -18,6 +19,7 @@ class MyApp extends StatelessWidget {
       initialRoute: '/',
       routes: {
         '/': (context) => Welcome(),
+        '/login': (context) => Login(),
       },
     );
   }
