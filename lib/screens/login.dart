@@ -62,8 +62,11 @@ class _LoginState extends State<Login> {
         ScaffoldMessenger.of(context).hideCurrentSnackBar();
         ScaffoldMessenger.of(context).showSnackBar(
           SnackBar(
-            content: Text('Email and Password do not match.'),
-            duration: Duration(seconds: 2),
+            content: Text(
+              'Email and Password do not match.',
+              style: kErrorStyle,
+            ),
+            duration: Duration(seconds: 3),
           ),
         );
         print(e);

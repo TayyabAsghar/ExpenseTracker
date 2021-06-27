@@ -64,7 +64,11 @@ class _SignupState extends State<Signup> {
         ScaffoldMessenger.of(context).hideCurrentSnackBar();
         ScaffoldMessenger.of(context).showSnackBar(
           SnackBar(
-            content: Text('Email Address Already Exists.'),
+            content: Text(
+              'Email Address Already Exists.',
+              style: kErrorStyle,
+            ),
+            duration: Duration(seconds: 3),
           ),
         );
         print('error: ' + e.toString());

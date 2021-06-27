@@ -231,7 +231,9 @@ class _ExpenseViewState extends State<ExpenseView> {
                                 ScaffoldMessenger.of(context).showSnackBar(
                                   SnackBar(
                                     content: Text(
-                                        'Could Not Delete the Transaction.'),
+                                      'Could Not Delete the Transaction.',
+                                      style: kErrorStyle,
+                                    ),
                                   ),
                                 );
 

@@ -82,14 +82,23 @@ class _AddRevenueTabState extends State<AddRevenueTab> {
 
         ScaffoldMessenger.of(context).hideCurrentSnackBar();
         ScaffoldMessenger.of(context).showSnackBar(
-            SnackBar(content: Text('Revenue Transaction added successfully.')));
+          SnackBar(
+            content: Text('Revenue Transaction added successfully.'),
+          ),
+        );
         db.close();
       } catch (e) {
         setState(() => showSpinner = false);
 
         ScaffoldMessenger.of(context).hideCurrentSnackBar();
         ScaffoldMessenger.of(context).showSnackBar(
-            SnackBar(content: Text('Could Not Complete the Transaction.')));
+          SnackBar(
+            content: Text(
+              'Could Not Complete the Transaction.',
+              style: kErrorStyle,
+            ),
+          ),
+        );
         print(e);
       }
     }

@@ -92,7 +92,10 @@ class _AddExpenseTabState extends State<AddExpenseTab> {
         ScaffoldMessenger.of(context).hideCurrentSnackBar();
         ScaffoldMessenger.of(context).showSnackBar(
           SnackBar(
-            content: Text('Could Not Complete the Transaction.'),
+            content: Text(
+              'Could Not Complete the Transaction.',
+              style: kErrorStyle,
+            ),
           ),
         );
         print(e);
