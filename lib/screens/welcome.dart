@@ -58,9 +58,8 @@ class Welcome extends StatelessWidget {
                       tag: 'sign-up',
                       child: RoundButton(
                         color: Colors.green.shade600,
-                        onPressed: () {
-                          // Navigator.pushNamed(context, LoginScreen.ROUTE);
-                        },
+                        onPressed: () =>
+                            Navigator.pushNamed(context, '/signup'),
                         title: 'SIGN UP',
                       ),
                     ),
