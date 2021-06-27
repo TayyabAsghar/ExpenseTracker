@@ -1,12 +1,11 @@
-import '../components/roundButton.dart';
-//import '../components/userData.dart';
-//import '../databaseSchema.dart';
-//import '../screens/home.dart';
 import '../theme/theme.dart';
-import 'package:flutter/material.dart';
-import 'package:modal_progress_hud_nsn/modal_progress_hud_nsn.dart';
-import 'package:sqflite/sqflite.dart';
 import 'package:path/path.dart';
+import '../components/userData.dart';
+import 'package:sqflite/sqflite.dart';
+import 'package:flutter/material.dart';
+import '../components/roundButton.dart';
+import '../database/databaseSchema.dart';
+import 'package:modal_progress_hud_nsn/modal_progress_hud_nsn.dart';
 
 class Signup extends StatefulWidget {
   const Signup({Key? key}) : super(key: key);
@@ -25,43 +24,63 @@ class _SignupState extends State<Signup> {
 
   @override
   Widget build(BuildContext context) {
-    // void onSignup() async {
-    //   Database db;
-    //   try {
-    //     // Get device path of the database
-    //     var path = join((await getDatabasesPath()), 'expenses.db');
-    //     // Initialize DB UserTable static method
-    //     db = await initializeDB(path);
-    //     // Insert Record using helper function
-    //     var id = await db.insert(UserTable.tableName, {
-    //       UserTable.columnName: name,
-    //       UserTable.columnEmail: email,
-    //       UserTable.columnPassword: password,
-    //       UserTable.columnAmount: int.parse(amount)
-    //     });
-    //     db.close();
-    //     // record creation returns a rowid as the primary key
-    //     print(id.toString());
-    //     setState(() {
-    //       showSpinner = false;
-    //       FocusScope.of(context).unfocus();
-    //       Navigator.of(context).pushNamed(HomeScreen.ROUTE,
-    //           arguments: UserData(email: email, name: name));
-    //     });
-    //   } catch (e) {
-    //     setState(() {
-    //       showSpinner = false;
-    //     });
-    //     ScaffoldMessenger.of(context).showSnackBar(
-    //         SnackBar(content: Text('Email Address Already Exists.')));
-    //     print(e);
-    //   }
-    // }
+    void signup() async {
+      Database db;
+      try {
+        var path = join((await getDatabasesPath()), 'expenses.db');
+        db = await initializeDB(path);
+
+        var id = await db.insert(
+          UserTable.tableName,
+          {
+            UserTable.columnName: name,
+            UserTable.columnEmail: email,
+            UserTable.columnPassword: password,
+            UserTable.columnAmount: int.parse(amount)
+          },
+        );
+        db.close();
+
+        print(id.toString());
+
+        setState(
+          () {
+            showSpinner = false;
+            FocusScope.of(context).unfocus();
+            Navigator.of(context).pushNamed(
+              '/home',
+              arguments: UserData(
+                email: email,
+                name: name,
+              ),
+            );
+          },
+        );
+      } catch (e) {
+        setState(
+          () => showSpinner = false,
+        );
+
+        ScaffoldMessenger.of(context).hideCurrentSnackBar();
+        ScaffoldMessenger.of(context).showSnackBar(
+          SnackBar(
+            content: Text('Email Address Already Exists.'),
+          ),
+        );
+        print('error: ' + e.toString());
+      }
+    }
 
     return Scaffold(
       appBar: AppBar(
         title: Text('SIGN UP'),
-        // backgroundColor: Colors.blueAccent,
+        leading: IconButton(
+          icon: Icon(Icons.arrow_back),
+          onPressed: () {
+            ScaffoldMessenger.of(context).hideCurrentSnackBar();
+            Navigator.pop(context);
+          },
+        ),
       ),
       body: ModalProgressHUD(
         inAsyncCall: showSpinner,
@@ -159,11 +178,10 @@ class _SignupState extends State<Signup> {
                     color: Colors.green.shade600,
                     title: 'SIGN UP',
                     onPressed: () {
-                      Navigator.pushNamed(context, '/home');
-                      // if (_formKey.currentState!.validate()) {
-                      //   setState(() => showSpinner = true);
-                      //   //onSignup();
-                      // }
+                      if (_formKey.currentState!.validate()) {
+                        setState(() => showSpinner = true);
+                        signup();
+                      }
                     },
                   ),
                 ),
