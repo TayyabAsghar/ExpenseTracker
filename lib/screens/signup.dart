@@ -159,10 +159,11 @@ class _SignupState extends State<Signup> {
                     color: Colors.green.shade600,
                     title: 'SIGN UP',
                     onPressed: () {
-                      if (_formKey.currentState!.validate()) {
-                        setState(() => showSpinner = true);
-                        //onSignup();
-                      }
+                      Navigator.pushNamed(context, '/home');
+                      // if (_formKey.currentState!.validate()) {
+                      //   setState(() => showSpinner = true);
+                      //   //onSignup();
+                      // }
                     },
                   ),
                 ),

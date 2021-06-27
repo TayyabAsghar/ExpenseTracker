@@ -1,4 +1,5 @@
 import '../theme/theme.dart';
+import '../screens/home.dart';
 import '../screens/login.dart';
 import '../screens/signup.dart';
 import '../screens/welcome.dart';
@@ -28,6 +29,7 @@ class MyApp extends StatelessWidget {
         '/': (context) => Welcome(),
         '/login': (context) => Login(),
         '/signup': (context) => Signup(),
+        '/home': (context) => Home()
       },
     );
   }
