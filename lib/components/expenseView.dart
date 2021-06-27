@@ -125,7 +125,7 @@ class _ExpenseViewState extends State<ExpenseView> {
                     (record) => DataRow(
                       cells: [
                         DataCell(
-                          Text(record['row-id'].toString()),
+                          Text(record['rowid'].toString()),
                         ),
                         DataCell(
                           Text(record[ExpenseTable.columnTitle]),
@@ -159,8 +159,8 @@ class _ExpenseViewState extends State<ExpenseView> {
                                   (txn) async {
                                     await txn.delete(
                                       ExpenseTable.tableName,
-                                      where: 'row-id = ?',
-                                      whereArgs: [record['row-id']],
+                                      where: 'rowid = ?',
+                                      whereArgs: [record['rowid']],
                                     );
                                     double remainder =
                                         double.parse(widget.userAmount) +

@@ -46,7 +46,7 @@ class _HomeState extends State<Home> with SingleTickerProviderStateMixin {
       List expenses = await db.query(
         ExpenseTable.tableName,
         columns: [
-          'row-id',
+          'rowid',
           ExpenseTable.columnTitle,
           ExpenseTable.columnAmount,
           ExpenseTable.columnTimestamp,
@@ -59,7 +59,7 @@ class _HomeState extends State<Home> with SingleTickerProviderStateMixin {
       List revenues = await db.query(
         RevenueTable.tableName,
         columns: [
-          'row-id',
+          'rowid',
           RevenueTable.columnTitle,
           RevenueTable.columnAmount,
           RevenueTable.columnTimestamp,
@@ -78,7 +78,7 @@ class _HomeState extends State<Home> with SingleTickerProviderStateMixin {
       );
     }
 
-    //if (amount.length == 0) getDataFromDB();
+    if (amount.length == 0) getDataFromDB();
     return Scaffold(
       appBar: AppBar(
         title: Text('Home'),

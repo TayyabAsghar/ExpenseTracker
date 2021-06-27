@@ -124,7 +124,7 @@ class _RevenueViewState extends State<RevenueView> {
                     (record) => DataRow(
                       cells: [
                         DataCell(
-                          Text(record['row-id'].toString()),
+                          Text(record['rowid'].toString()),
                         ),
                         DataCell(
                           Text(record[RevenueTable.columnTitle]),
@@ -160,8 +160,8 @@ class _RevenueViewState extends State<RevenueView> {
                                   (txn) async {
                                     await txn.delete(
                                       RevenueTable.tableName,
-                                      where: 'row-id = ?',
-                                      whereArgs: [record['row-id']],
+                                      where: 'rowid = ?',
+                                      whereArgs: [record['rowid']],
                                     );
 
                                     double remainder =
