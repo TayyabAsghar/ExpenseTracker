@@ -2,6 +2,7 @@ import '../theme/theme.dart';
 import 'package:path/path.dart';
 import 'package:sqflite/sqflite.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import '../components/roundButton.dart';
 import '../database/databaseSchema.dart';
 import 'package:modal_progress_hud_nsn/modal_progress_hud_nsn.dart';
@@ -127,6 +128,7 @@ class _AddExpenseTabState extends State<AddExpenseTab> {
                     labelText: 'Transaction Title',
                     hintText: 'Enter Transaction Title',
                   ),
+                  keyboardType: TextInputType.name,
                   onChanged: (value) => title = value,
                   validator: (value) {
                     if (value == null || value.isEmpty)
@@ -136,12 +138,13 @@ class _AddExpenseTabState extends State<AddExpenseTab> {
                 ),
                 SizedBox(height: 20),
                 TextFormField(
-                  keyboardType: TextInputType.number,
                   decoration: kTextFieldDecoration.copyWith(
                     prefixIcon: Icon(Icons.attach_money),
                     labelText: 'Amount',
                     hintText: 'Enter an Amount',
                   ),
+                  keyboardType: TextInputType.number,
+                  inputFormatters: [FilteringTextInputFormatter.digitsOnly],
                   onChanged: (value) => amount = value,
                   validator: (value) {
                     if (value == null || value.isEmpty)
@@ -154,7 +157,7 @@ class _AddExpenseTabState extends State<AddExpenseTab> {
                 ),
                 SizedBox(height: 20),
                 RoundButton(
-                  color: Colors.blueAccent,
+                  color: primaryColor,
                   title: 'Add Expense',
                   onPressed: () {
                     if (_formKey.currentState!.validate()) {

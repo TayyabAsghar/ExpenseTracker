@@ -89,7 +89,11 @@ class NavDrawer extends StatelessWidget {
               Navigator.pop(context);
 
               if (_currentRoute != '/transaction')
-                Navigator.pushNamed(context, '/transaction');
+                Navigator.pushNamed(
+                  context,
+                  '/transaction',
+                  arguments: userData,
+                );
 
               //Navigator.pushReplacementNamed(context, '/transaction');
             },

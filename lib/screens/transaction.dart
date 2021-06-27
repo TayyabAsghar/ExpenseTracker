@@ -7,12 +7,12 @@ import '../database/databaseSchema.dart';
 import '../components/addExpenseTab.dart';
 import '../components/addRevenueTab.dart';
 
-class TransactionScreen extends StatefulWidget {
+class Transaction extends StatefulWidget {
   @override
-  _TransactionScreenState createState() => _TransactionScreenState();
+  _TransactionState createState() => _TransactionState();
 }
 
-class _TransactionScreenState extends State<TransactionScreen>
+class _TransactionState extends State<Transaction>
     with SingleTickerProviderStateMixin {
   late TabController _tabController;
   String amount = '';
@@ -52,7 +52,7 @@ class _TransactionScreenState extends State<TransactionScreen>
 
     return Scaffold(
       appBar: AppBar(
-        title: Text('Transaction Operations'),
+        title: Text('Transactions'),
         actions: [
           Center(
             child: Padding(

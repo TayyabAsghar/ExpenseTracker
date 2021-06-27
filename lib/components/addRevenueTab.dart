@@ -2,6 +2,7 @@ import '../theme/theme.dart';
 import 'package:path/path.dart';
 import 'package:sqflite/sqflite.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import '../components/roundButton.dart';
 import '../database/databaseSchema.dart';
 import 'package:modal_progress_hud_nsn/modal_progress_hud_nsn.dart';
@@ -107,12 +108,13 @@ class _AddRevenueTabState extends State<AddRevenueTab> {
               children: [
                 SizedBox(height: 48),
                 Text(
-                  'Add Revenue Transaction',
+                  'Add Revenue',
                   textAlign: TextAlign.center,
                   style: kTabViewHeadingStyle,
                 ),
                 SizedBox(height: 48.0),
                 TextFormField(
+                  keyboardType: TextInputType.name,
                   decoration: kTextFieldDecoration.copyWith(
                     prefixIcon: Icon(Icons.title),
                     labelText: 'Transaction Title',
@@ -127,12 +129,13 @@ class _AddRevenueTabState extends State<AddRevenueTab> {
                 ),
                 SizedBox(height: 20),
                 TextFormField(
-                  keyboardType: TextInputType.number,
                   decoration: kTextFieldDecoration.copyWith(
                     prefixIcon: Icon(Icons.attach_money),
                     labelText: 'Amount',
                     hintText: 'Enter an Amount',
                   ),
+                  keyboardType: TextInputType.number,
+                  inputFormatters: [FilteringTextInputFormatter.digitsOnly],
                   onChanged: (value) => amount = value,
                   validator: (value) {
                     if (value == null || value.isEmpty)
@@ -144,7 +147,7 @@ class _AddRevenueTabState extends State<AddRevenueTab> {
                 ),
                 SizedBox(height: 20),
                 RoundButton(
-                  color: Colors.blueAccent,
+                  color: primaryColor,
                   title: 'Add Revenue',
                   onPressed: () {
                     if (_formKey.currentState!.validate()) {
