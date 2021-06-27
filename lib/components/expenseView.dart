@@ -182,6 +182,8 @@ class _ExpenseViewState extends State<ExpenseView> {
 
                                 await widget.getDataFromDB();
 
+                                ScaffoldMessenger.of(context)
+                                    .hideCurrentSnackBar();
                                 ScaffoldMessenger.of(context).showSnackBar(
                                   SnackBar(
                                     content: Text(
@@ -189,6 +191,8 @@ class _ExpenseViewState extends State<ExpenseView> {
                                   ),
                                 );
                               } catch (e) {
+                                ScaffoldMessenger.of(context)
+                                    .hideCurrentSnackBar();
                                 ScaffoldMessenger.of(context).showSnackBar(
                                   SnackBar(
                                     content: Text(

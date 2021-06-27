@@ -184,6 +184,8 @@ class _RevenueViewState extends State<RevenueView> {
 
                                 await widget.getDataFromDB();
 
+                                ScaffoldMessenger.of(context)
+                                    .hideCurrentSnackBar();
                                 ScaffoldMessenger.of(context).showSnackBar(
                                   SnackBar(
                                     content: Text(
@@ -191,6 +193,8 @@ class _RevenueViewState extends State<RevenueView> {
                                   ),
                                 );
                               } catch (e) {
+                                ScaffoldMessenger.of(context)
+                                    .hideCurrentSnackBar();
                                 ScaffoldMessenger.of(context).showSnackBar(
                                   SnackBar(
                                     content: Text(
