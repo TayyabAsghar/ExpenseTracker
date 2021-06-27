@@ -117,7 +117,7 @@ class _AddRevenueTabState extends State<AddRevenueTab> {
               children: [
                 SizedBox(height: 48),
                 Text(
-                  'Add Revenue',
+                  'Add Revenues',
                   textAlign: TextAlign.center,
                   style: kTabViewHeadingStyle,
                 ),

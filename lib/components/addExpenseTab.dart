@@ -118,7 +118,7 @@ class _AddExpenseTabState extends State<AddExpenseTab> {
                   height: 48,
                 ),
                 Text(
-                  'Add Expense Transaction',
+                  'Add Expenses',
                   textAlign: TextAlign.center,
                   style: kTabViewHeadingStyle,
                 ),

@@ -75,7 +75,7 @@ class NavDrawer extends StatelessWidget {
           ListTile(
             leading: Icon(Icons.edit),
             title: Text(
-              'Transaction Operations',
+              'Transactions',
               style: TextStyle(
                 fontSize: _fontSize,
                 color: _currentRoute == '/transaction'
