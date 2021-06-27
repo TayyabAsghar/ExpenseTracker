@@ -1,20 +1,23 @@
+import 'package:expense_tracker/components/background.dart';
 import 'package:flutter/material.dart';
 
 const primaryColor = MaterialColor(
-  0xFF7CB342,
+  0xFF21A671,
   <int, Color>{
-    50: Color(0xFF7CB342),
-    100: Color(0xFF7CB342),
-    200: Color(0xFF7CB342),
-    300: Color(0xFF7CB342),
-    400: Color(0xFF7CB342),
-    500: Color(0xFF7CB342),
-    600: Color(0xFF7CB342),
-    700: Color(0xFF7CB342),
-    800: Color(0xFF7CB342),
-    900: Color(0xFF7CB342),
+    50: Color(0xFF21A671),
+    100: Color(0xFF21A671),
+    200: Color(0xFF21A671),
+    300: Color(0xFF21A671),
+    400: Color(0xFF21A671),
+    500: Color(0xFF21A671),
+    600: Color(0xFF21A671),
+    700: Color(0xFF21A671),
+    800: Color(0xFF21A671),
+    900: Color(0xFF21A671),
   },
 );
+
+const backgroundColor = Color(0xFF2D2F41);
 
 final kTextFieldDecoration = InputDecoration(
   contentPadding: EdgeInsets.symmetric(vertical: 10.0, horizontal: 20.0),

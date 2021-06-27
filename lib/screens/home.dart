@@ -2,7 +2,7 @@
 import '../components/navDrawer.dart';
 import '../components/expenseView.dart';
 import '../components/revenueView.dart';
-//import '../components/userData.dart';
+import '../components/userData.dart';
 //import '../databaseSchema.dart';
 //import '../screens/transaction.dart';
 import 'package:flutter/material.dart';
@@ -33,6 +33,7 @@ class _HomeState extends State<Home> with SingleTickerProviderStateMixin {
 
   @override
   Widget build(BuildContext context) {
+    final UserData userData = UserData(email: 'email', name: 'name');
     //final userData = ModalRoute.of(context)!.settings.arguments as UserData;
     // void getDataFromDB() async {
     //   // Get device path of the database
@@ -78,7 +79,6 @@ class _HomeState extends State<Home> with SingleTickerProviderStateMixin {
     return Scaffold(
       appBar: AppBar(
         title: Text('Home'),
-        backgroundColor: Colors.blueAccent,
         actions: [
           Center(
             child: Padding(
@@ -113,39 +113,7 @@ class _HomeState extends State<Home> with SingleTickerProviderStateMixin {
         ),
       ),
       drawer: Drawer(
-        child: NavDrawer(),
-        // ListView(
-        //   padding: EdgeInsets.zero,
-        //   children: [
-        //     // CustomDrawerHeader(
-        //     //   userData: userData,
-        //     // ),
-        //     ListTile(
-        //       title: Text('Transaction Operations'),
-        //       leading: Icon(
-        //         Icons.edit,
-        //         color: Colors.blueAccent,
-        //         size: 30,
-        //       ),
-        //       onTap: () {
-        //         // Navigator.popAndPushNamed(context, TransactionScreen.ROUTE,
-        //         //     arguments: userData);
-        //       },
-        //       dense: true,
-        //     ),
-        //     ListTile(
-        //       title: Text('Sign Out'),
-        //       leading: Icon(
-        //         Icons.logout,
-        //         color: Colors.blueAccent,
-        //         size: 30,
-        //       ),
-        //       onTap: () =>
-        //           Navigator.popUntil(context, ModalRoute.withName('/')),
-        //       dense: true,
-        //     ),
-        //   ],
-        // ),
+        child: NavDrawer(userData: userData),
       ),
       body: TabBarView(
         controller: _tabController,
@@ -153,13 +121,13 @@ class _HomeState extends State<Home> with SingleTickerProviderStateMixin {
         children: [
           ExpenseView(
               expensesList: expensesList,
-              email: 'userData.email',
+              email: userData.email,
               userAmount: amount,
               getDataFromDB: () {} //'getDataFromDB',
               ),
           RevenueView(
               revenuesList: revenuesList,
-              email: 'userData.email',
+              email: userData.email,
               userAmount: amount,
               getDataFromDB: () {} //'getDataFromDB',
               ),
