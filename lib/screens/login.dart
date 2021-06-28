@@ -22,10 +22,9 @@ class _LoginState extends State<Login> {
   @override
   Widget build(BuildContext context) {
     void login() async {
-      Database db;
       try {
         var path = join((await getDatabasesPath()), 'expenses.db');
-        db = await initializeDB(path);
+        Database db = await initializeDB(path);
         var name = await db.query(
           UserTable.tableName,
           columns: [UserTable.columnName],

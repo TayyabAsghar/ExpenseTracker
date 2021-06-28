@@ -26,10 +26,9 @@ class _SignupState extends State<Signup> {
   @override
   Widget build(BuildContext context) {
     void signup() async {
-      Database db;
       try {
         var path = join((await getDatabasesPath()), 'expenses.db');
-        db = await initializeDB(path);
+        Database db = await initializeDB(path);
 
         var id = await db.insert(
           UserTable.tableName,
