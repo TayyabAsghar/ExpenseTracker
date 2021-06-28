@@ -1,3 +1,4 @@
+import '../theme/theme.dart';
 import 'package:path/path.dart';
 import '../components/userData.dart';
 import 'package:sqflite/sqflite.dart';
@@ -64,13 +65,11 @@ class _TransactionState extends State<Transaction>
                         fontSize: 25,
                         color: double.parse(amount) < 0
                             ? Colors.redAccent[700]
-                            : Colors.greenAccent[400],
+                            : backgroundColor,
                         fontWeight: FontWeight.bold,
                       ),
                     )
-                  : CircularProgressIndicator(
-                      color: Colors.greenAccent[400],
-                    ),
+                  : CircularProgressIndicator(color: backgroundColor),
             ),
           )
         ],

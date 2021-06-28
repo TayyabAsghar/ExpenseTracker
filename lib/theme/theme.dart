@@ -17,8 +17,11 @@ const primaryColor = MaterialColor(
 );
 
 const backgroundColor = Color(0xFF2D2F41);
-final primaryMaterialStateColor = MaterialStateProperty.all(primaryColor);
+final kErrorStyle = TextStyle(color: Colors.red[300]);
 final outlinedButtonTextStyle = TextStyle(color: Colors.white);
+final primaryMaterialStateColor = MaterialStateProperty.all(primaryColor);
+const kDataColumnTextStyle =
+    TextStyle(fontSize: 20, fontWeight: FontWeight.bold);
 
 final kTextFieldDecoration = InputDecoration(
   contentPadding: EdgeInsets.symmetric(vertical: 10.0, horizontal: 20.0),
@@ -47,8 +50,3 @@ const kTabViewHeadingStyle = TextStyle(
   fontStyle: FontStyle.italic,
   fontWeight: FontWeight.bold,
 );
-
-const kDataColumnTextStyle =
-    TextStyle(fontSize: 20, fontWeight: FontWeight.bold);
-
-final kErrorStyle = TextStyle(color: Colors.red[300]);

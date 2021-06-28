@@ -97,9 +97,7 @@ class _HomeState extends State<Home> with SingleTickerProviderStateMixin {
                         fontWeight: FontWeight.bold,
                       ),
                     )
-                  : CircularProgressIndicator(
-                      color: Colors.greenAccent[400],
-                    ),
+                  : CircularProgressIndicator(color: backgroundColor),
             ),
           )
         ],
