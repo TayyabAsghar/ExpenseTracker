@@ -3,6 +3,7 @@ import 'package:path/path.dart';
 import '../components/userData.dart';
 import 'package:sqflite/sqflite.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import '../components/roundButton.dart';
 import '../database/databaseSchema.dart';
 import 'package:modal_progress_hud_nsn/modal_progress_hud_nsn.dart';
@@ -47,8 +48,10 @@ class _SignupState extends State<Signup> {
           () {
             showSpinner = false;
             FocusScope.of(context).unfocus();
-            Navigator.of(context).pushNamed(
+            Navigator.pushNamedAndRemoveUntil(
+              context,
               '/home',
+              (_) => false,
               arguments: UserData(
                 email: email,
                 name: name,
@@ -160,12 +163,13 @@ class _SignupState extends State<Signup> {
                 ),
                 SizedBox(height: 10.0),
                 TextFormField(
-                  keyboardType: TextInputType.number,
                   decoration: kTextFieldDecoration.copyWith(
                     prefixIcon: Icon(Icons.attach_money),
                     labelText: 'Initial Amount',
                     hintText: 'Enter initial deposit',
                   ),
+                  keyboardType: TextInputType.number,
+                  inputFormatters: [FilteringTextInputFormatter.digitsOnly],
                   onChanged: (value) => amount = value,
                   validator: (value) {
                     if (value == null || value.isEmpty)

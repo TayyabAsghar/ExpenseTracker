@@ -171,7 +171,7 @@ class _ExpenseViewState extends State<ExpenseView> {
                         ),
                         DataCell(
                           Text(
-                            DateFormat('yyyy-MM-dd – kk:mm').format(
+                            DateFormat('dd-MM-yyyy – kk:mm').format(
                               DateTime.fromMillisecondsSinceEpoch(
                                 record[ExpenseTable.columnTimestamp],
                               ),

@@ -45,8 +45,10 @@ class _LoginState extends State<Login> {
               showSpinner = false;
               FocusScope.of(context).unfocus();
 
-              Navigator.of(context).pushNamed(
+              Navigator.pushNamedAndRemoveUntil(
+                context,
                 '/home',
+                (_) => false,
                 arguments: UserData(
                   email: email,
                   name: name[0][UserTable.columnName].toString(),

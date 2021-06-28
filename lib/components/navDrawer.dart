@@ -1,5 +1,5 @@
-import '../theme/theme.dart';
 import 'userData.dart';
+import '../theme/theme.dart';
 import 'package:flutter/material.dart';
 
 class NavDrawer extends StatelessWidget {
@@ -113,24 +113,25 @@ class NavDrawer extends StatelessWidget {
             selected: !routes.contains(_currentRoute),
             onTap: () => showDialog(
               context: context,
-              builder: (context) {
-                return AlertDialog(
-                  elevation: 24.0,
-                  title: Text('Confirmation'),
-                  content: Text('Are you sure, you wants to logout?'),
-                  actions: [
-                    ElevatedButton(
-                      onPressed: () => Navigator.pop(context),
-                      child: Text('No'),
+              builder: (context) => AlertDialog(
+                elevation: 24.0,
+                title: Text('Confirmation'),
+                content: Text('Are you sure, you wants to logout?'),
+                actions: [
+                  ElevatedButton(
+                    child: Text('No'),
+                    onPressed: () => Navigator.pop(context),
+                  ),
+                  ElevatedButton(
+                    child: Text('Yes'),
+                    onPressed: () => Navigator.pushNamedAndRemoveUntil(
+                      context,
+                      '/',
+                      (_) => false,
                     ),
-                    ElevatedButton(
-                      onPressed: () =>
-                          Navigator.popUntil(context, ModalRoute.withName('/')),
-                      child: Text('Yes'),
-                    ),
-                  ],
-                );
-              },
+                  ),
+                ],
+              ),
             ),
           ),
         ],
