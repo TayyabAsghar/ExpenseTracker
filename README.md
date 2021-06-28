@@ -18,7 +18,7 @@ Expense Tracker is a Mobile Development Course Project that uses `sqflite` as Da
 
 # ⏮️ Preview
 
-These are some screens and features that has been implemented.
+![][preview]
 
 # 👽 External API
 
@@ -58,3 +58,4 @@ Start developing!
 
 [fsdk]: https://flutter.dev/docs/get-started/install
 [astudio]: https://developer.android.com/studio
+[preview]: assets/gifs/preview.gif
