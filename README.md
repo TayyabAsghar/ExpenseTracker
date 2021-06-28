@@ -1,11 +1,13 @@
 ![GitHub watchers](https://img.shields.io/github/watchers/TayyabAsghar/ExpenseTracker?style=social)
 [![GitHub forks](https://img.shields.io/github/forks/TayyabAsghar/ExpenseTracker?logo=github&style=social)](https://github.com/TayyabAsghar/MAD-Sem6/network)
 [![GitHub stars](https://img.shields.io/github/stars/TayyabAsghar/ExpenseTracker?logo=github&style=social)](https://github.com/TayyabAsghar/ExpenseTracker/stargazers)
-![GitHub all releases](https://img.shields.io/github/downloads/TayyabAsghar/ExpenseTrackers/total?logo=github&style=social)
+![GitHub all releases](https://img.shields.io/github/downloads/TayyabAsghar/ExpenseTracker/total?logo=github&style=social)
 
-<a href= "https://github.com/TayyabAsghar/https://github.com/TayyabAsghar/ExpenseTracker/blob/master/assets/icons/logo.png">
+<p align="center">
+<a href= "https://github.com/TayyabAsghar/ExpenseTracker/blob/master/assets/icons/logo.png" >
 <img src="assets/icons/logo.png" alt="drawing" width="200"/>
 </a>
+</p>
 
 # 🔍 Overview
 
