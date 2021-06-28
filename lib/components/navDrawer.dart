@@ -34,10 +34,10 @@ class NavDrawer extends StatelessWidget {
                       fit: BoxFit.cover,
                       width: 80,
                       height: 80,
-                      placeholder: AssetImage('assets/images/logo.png'),
+                      placeholder: AssetImage('assets/icons/logo.png'),
                       imageErrorBuilder: (_, __, ___) => CircleAvatar(
                         radius: 40,
-                        backgroundImage: AssetImage('assets/images/logo.png'),
+                        backgroundImage: AssetImage('assets/icons/logo.png'),
                       ),
                     ),
                   ),

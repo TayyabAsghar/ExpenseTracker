@@ -105,7 +105,7 @@ class _SignupState extends State<Signup> {
                     tag: 'logo',
                     child: Container(
                       height: 150,
-                      child: Image.asset('assets/images/logo.png'),
+                      child: Image.asset('assets/icons/logo.png'),
                     ),
                   ),
                 ),

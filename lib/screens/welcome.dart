@@ -26,7 +26,7 @@ class Welcome extends StatelessWidget {
                       child: Container(
                         width: 50,
                         child: Image.asset(
-                          'assets/images/logo.png',
+                          'assets/icons/logo.png',
                           fit: BoxFit.scaleDown,
                         ),
                       ),
